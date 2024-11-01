@@ -1,0 +1,179 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}
+/* +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+
+
+
+/* Global styles for all links */
+a {
+  text-decoration: none;
+  color: #000; /* Black color */
+  font-size: 16px;
+  padding: 10px 15px;
+  font-family: Arial, sans-serif;
+  transition: color 0.3s ease-in-out;
+}
+
+/* Hover effect for links */
+a:hover {
+  color: #007bff; /* Change color on hover */
+  font-weight: bold;
+}
+
+/* Style for the navigation menu */
+nav {
+  background-color: #f8f8f8; /* Light grey background */
+  padding: 15px 0;
+  display: flex;
+  justify-content: space-around;
+  border-bottom: 1px solid #ccc;
+}
+
+/* Individual links styling */
+a[href='/ajio'] {
+  color: #ff4500; /* Ajio specific color */
+}
+
+a[href='/men'] {
+  color: #1e90ff; /* Men specific color */
+}
+
+a[href='/women'] {
+  color: #ff69b4; /* Women specific color */
+}
+
+a[href='/kids'] {
+  color: #32cd32; /* Kids specific color */
+}
+
+a[href='/homeandkitchen'] {
+  color: #8b4513; /* Home & Kitchen specific color */
+}
+
+a[href='/contactus'] {
+  color: #20b2aa; /* Contact Us specific color */
+}
+
+a[href='/aboutus'] {
+  color: #4682b4; /* About Us specific color */
+}
+
+a[href='/cart'] {
+  color: #dc143c; /* Cart specific color */
+  font-weight: bold;
+}
+
+/* Mobile responsive styles */
+@media screen and (max-width: 768px) {
+  nav {
+      flex-direction: column;
+  }
+
+  a {
+      display: block;
+      text-align: center;
+      margin: 10px 0;
+  }
+}
+/* +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+/* Style for the product list items */
+li {
+  list-style: none;
+  padding: 15px;
+  margin: 15px 0;
+  border: 2px solid #e0e0e0;
+  background-color: #ffffff;
+  border-radius: 12px;
+  font-family: 'Helvetica', sans-serif;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease-in-out;
+}
+
+/* Hover effect for list items */
+li:hover {
+  transform: scale(1.02);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Product details inside the list item */
+li span {
+  font-size: 18px;
+  color: #4a4a4a;
+  font-weight: 500;
+}
+
+/* Style for the "Add To Cart" button */
+button {
+  background-color: #ff5722;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+/* Hover effect for the button */
+button:hover {
+  background-color: #e64a19;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Mobile responsive adjustments */
+@media screen and (max-width: 768px) {
+  li {
+      flex-direction: column;
+      align-items: flex-start;
+  }
+
+  button {
+      margin-top: 15px;
+      width: 100%;
+  }
+}
