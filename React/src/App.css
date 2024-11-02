@@ -1,0 +1,239 @@
+/* Root Container */
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+  animation: fadeInPage 1.5s ease both;
+  background-color: #011f3d; /* Light background for contrast */
+}
+
+/* List Item Glow with Depth */
+li {
+  list-style-type: none;
+  padding: 12px;
+  margin: 8px;
+  background-color: #222;
+  border: 1px solid #444;
+  border-radius: 8px;
+  display: block;
+  transition: transform 0.4s ease, box-shadow 0.4s ease, background-color 0.3s ease;
+}
+
+li:hover {
+  background-color: #333;
+  transform: scale(1.05) translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Logo Spin and Glow */
+@keyframes logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes logo-glow {
+  0%, 100% { filter: drop-shadow(0 0 8px #61dafb); }
+  50% { filter: drop-shadow(0 0 20px #61dafb); }
+}
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  transition: transform 0.5s ease, filter 0.5s ease;
+}
+
+.logo:hover {
+  animation: logo-spin 2s linear infinite, logo-glow 2s ease-in-out infinite;
+}
+
+/* Button Styles with Enhanced Hover */
+button {
+  padding: 10px 20px;
+  background: linear-gradient(45deg, #3e8e41, #007b9e);
+  color: white;
+  margin: 10px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+button:hover {
+  background: linear-gradient(45deg, #45a049, #1a8ebc);
+  transform: scale(1.1) translateY(-2px);
+}
+
+button:active {
+  transform: translateY(3px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Shimmering Effect for navs */
+@keyframes shimmer {
+  0% { background-position: -200%; }
+  100% { background-position: 200%; }
+}
+
+a {
+  display: inline-block;
+  background: linear-gradient(90deg, rgba(202, 208, 22, 0.2), rgba(255,255,255,0.8), rgba(255,255,255,0.2));
+  background-size: 200%;
+  padding: 12px 20px;
+  margin: 10px;
+  color: #104171;
+  text-decoration: none;
+  border: 2px solid transparent;
+  border-radius: 5px;
+  transition: color 0.3s ease, border-color 0.3s ease;
+}
+
+a:hover {
+  color: #16A085;
+  border-color: #16A085;
+  animation: shimmer 1.5s infinite linear;
+}
+
+/* Cart Total Slide-in Animation */
+@keyframes slideIn {
+  0% { transform: translateX(100%); opacity: 0; }
+  100% { transform: translateX(0); opacity: 1; }
+}
+
+p {
+  font-size: 25px;
+  margin: 10px 0;
+  animation: slideIn 0.5s ease-in-out both;
+}
+
+/* Elegant Bounce Heading */
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+  40% { transform: translateY(-20px); }
+  60% { transform: translateY(-10px); }
+}
+
+h1 {
+  font-family: 'Poppins', sans-serif;
+  font-size: 3rem;
+  color: #333;
+  background: linear-gradient(90deg, #ff6f61, #ffaf61);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 700;
+  margin-bottom: 20px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, letter-spacing 0.3s ease;
+}
+
+h1:hover {
+  transform: scale(1.05);
+  letter-spacing: 2px;
+}
+
+/* Underline Effect on Hover */
+h1::after {
+  content: '';
+  display: block;
+  width: 100px;
+  height: 4px;
+  background: #ff6f61;
+  margin: 10px auto 0;
+  transition: width 0.4s ease;
+}
+
+h1:hover::after {
+  width: 150px;
+}
+
+/* Button Flash Effect */
+@keyframes button-flash {
+  0%, 100% { background-color: #218838; }
+  50% { background-color: #1e7e34; }
+}
+
+button:hover {
+  animation: button-flash 0.8s ease-in-out infinite;
+}
+
+/* Fade-In Page */
+@keyframes fadeInPage {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Loader Animation */
+.loader {
+  border: 6px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 6px solid #4CAF50;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+/* Fixed Navigation Styles */
+nav {
+  position: fixed; /* Keeps the nav fixed at the top */
+  top: 0;
+  left: 0;
+  width: 100%; /* Full-width across the viewport */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 15px 0;
+  background-color: #333; /* Dark background color */
+  box-shadow: 0 8px 8px rgba(0, 0, 0, 0.1); /* Shadow for depth */
+  z-index: 1000; /* Ensures the nav is above other elements */
+}
+
+/* Navigation Links */
+nav a {
+  margin: 0 15px;
+  font-family: 'Poppins', sans-serif;
+  color: #f5f5f5;
+  font-size: 1rem;
+  text-decoration: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+/* Hover Effect */
+nav a:hover {
+  background-color: #ff6f61;
+  color: #fff;
+  transform: translateY(-3px);
+}
+
+/* Adjust content to avoid being hidden behind the nav */
+body {
+  margin-top: 70px; /* Adjusts to the height of the fixed nav */
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  nav a {
+    font-size: 0.9rem;
+    padding: 8px 12px;
+  }
+}
+
+/* Specific background colors for different links */
+a[href='/home'] { background-color: #2980B9; color: #fff; }
+a[href='/veg'] { background-color: #27AE60; color: #fff; }
+a[href='/nonveg'] { background-color: #E67E22; color: #fff; }
+a[href='/cart'] { background-color: #8E44AD; color: #fff; }
+a[href='/aboutus'] { background-color: #F39C12; color: #fff; }
+a[href='/contactus'] { background-color: #16A085; color: #fff; }
+a[href='/purchasehistory'] { background-color: #34495E; color: #fff; }
+
+body {
+  margin-top: 70px;
+  background-color: #824c4c;
+}
+
