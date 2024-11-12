@@ -13,6 +13,7 @@ import Task from './Task'
 import ProductsSave from './productsSave'
 import GoogleLoginComponent from './GoogleLoginComponent'
 import { GoogleOAuthProvider } from '@react-oauth/google'
+import NotFound from './NotFound'
 
 
 function App() {
@@ -49,6 +50,7 @@ const cartItems= cart.reduce((sum,item) => sum + item.quantity,0)
     <Route path='/aboutus' element={<AboutUs />} />
     <Route path='/contactus' element={<ContactUs />} />
     <Route path='/purchasehistory' element={<PurchaseHistory />} />
+    <Route path='*' element={<NotFound />} />
 
     {/* <Route path='/productsSave' element={<ProductsSave />} /> */}
 

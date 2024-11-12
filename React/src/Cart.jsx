@@ -1,131 +1,135 @@
-import React, { useRef, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { decrement, increment, remove } from './store';
+import React, { useRef, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { addPurchase, clearCart, decrement, increment, remove } from './store';
+import './Cart.css';
 
 function Cart() {
     const dispatch = useDispatch();
-    const carter =useSelector(state => state.cart)
-    const cartProducts = carter.map((cartProduct,index) => 
-        <li key={index}>
+    const cart = useSelector(state => state.cart);
+    const [discount, setDiscount] = useState(0);
+    const [cupDiscount, setCupDiscount] = useState("");
+    const [cupDiscountPer, setCupDiscountPer] = useState(0);
 
-           Item : {cartProduct.name} - Price : {cartProduct.price} - Quantity : {cartProduct.quantity}
-            
-            
-            <button onClick={()=>dispatch(increment(cartProduct.name))}>+</button>
-            <button onClick={()=>dispatch(decrement(cartProduct.name))} >-</button>
-            <button  onClick={()=>dispatch(remove(cartProduct))} >Remove</button>
-        </li>
-        )
-
-    
-
-    
-    const [discount,setDiscount] = useState(0);
-
-
-   
-
-    const handleDiscountPercentage = (disValue)=>{
-      
-      setDiscount(disValue)
-
-    }
-
-
-
-    const [cupdiscount,setCupDiscount] = useState("");
-    const [cupdiscountper,setCupDiscountper] = useState(0);
-    
-    const cupDiscountCalulation = () =>{
-        switch (cupdiscount) {
-            case "KALYAN10" : setCupDiscountper(10)
-                
-                break;
-            case "KALYAN20":setCupDiscountper(20)
-            
-                break;
-            case "DWl27":setCupDiscountper(27)
+    // Calculate Total, Discount, and Final Amount
+    const calculateDiscount = () => {
+        let total = cart.reduce((sum, item) => sum + item.quantity * item.price, 0);
+        total = parseFloat(total.toFixed(2));
         
-            break;
-            case "DSSRA40":setCupDiscountper(40)
-        
-            break;
-        
-            default: alert("Invalid Coupan ENterd")
-                    setCupDiscountper(0)
+        let dis = total * discount / 100;
+        dis = parseFloat(dis.toFixed(2));
+
+        let cupDis = total * cupDiscountPer / 100;
+        cupDis = parseFloat(cupDis.toFixed(2));
+
+        let netAmount = total - dis - cupDis;
+        return { total, dis, netAmount, cupDis };
+    };
+
+    const { total, dis, netAmount, cupDis } = calculateDiscount();
+
+    // Handle Discount Percentage
+    const handleDiscountPercentage = (disValue) => {
+        setDiscount(disValue);
+    };
+
+    // Handle Coupon Code Calculation
+    const handleCouponCode = () => {
+        switch (cupDiscount) {
+            case "KALYAN10": setCupDiscountPer(10); break;
+            case "KALYAN20": setCupDiscountPer(20); break;
+            case "DWl27": setCupDiscountPer(27); break;
+            case "DSSRA40": setCupDiscountPer(40); break;
+            default: 
+                alert("Invalid Coupon Entered");
+                setCupDiscountPer(0);
                 break;
         }
+    };
 
-    }
-    
+    // Handle Add to History
+    const handleHistory = () => {
+        const purchaseDate = new Date().toLocaleDateString();
+        const purchaseHistory = {
+            date: purchaseDate,
+            items: [...cart],
+            totalAmount: Number(netAmount),
+        };
 
-    const calculateDiscount = () =>{
-        let total =  carter.reduce((sum,item)=> sum + item.quantity * item.price,0 )
-        total =parseFloat(total.toFixed(2))
-        let dis = total * discount/100
-        dis = parseFloat(dis)
+        dispatch(clearCart());
+        dispatch(addPurchase(purchaseHistory));
+    };
 
-        let cupdis = total * cupdiscountper/100
-        cupdis = parseFloat(cupdis)
-        let netAmount = total - dis - cupdis
-        return { total, dis, netAmount,cupdis }
-
-    }
-
-
-
-    let { total,dis,netAmount,cupdis} = calculateDiscount()
-
-    
-   
-
+    // Render Cart Products
+    const renderCartProducts = () => {
+        return cart.map((cartProduct, index) => (
+            <li key={index} className="cart-item">
+                  <img 
+                className="product-image" 
+                src={`${`public`}/${cartProduct.image}`} // Correct path to the public folder image
+                width={150}
+                height={100}
+                alt={cartProduct.name}
+            />
+                <h4>{cartProduct.name}</h4>
+                <p>Price: ${cartProduct.price}</p>
+                <p>Quantity: {cartProduct.quantity}</p>
+                <div className="cart-buttons">
+                    <button onClick={() => dispatch(increment(cartProduct.name))}>+</button>
+                    <button onClick={() => dispatch(decrement(cartProduct.name))}>-</button>
+                    <button onClick={() => dispatch(remove(cartProduct))}>Remove</button>
+                </div>
+            </li>
+        ));
+    };
 
     return (
-
-       
         <>
-         <h1>CART</h1>
-         <h3>List of Items</h3>
-         {
-         (carter.length === 0 )?( 
-            <p>Cart is Empty</p>
-         ) :
-         (
-            <div>
-            <ul>
-            {cartProducts}
-            <p>---------------------------</p>
-         </ul>
-         <p>Total Amount Before Discount : ${total}</p>
-         
+            <div className="cart-container">
+                <h1 className="cart-header">CART</h1>
+                <h3>List of Items</h3>
+                {cart.length === 0 ? (
+                    <p>Cart is Empty</p>
+                ) : (
+                    <div>
+                        <ul className="cart-list">
+                            {renderCartProducts()}
+                        </ul>
 
-         <button onClick={()=> handleDiscountPercentage(10)}>Apply10% Discount</button> 
-         <button onClick={()=> handleDiscountPercentage(20)}>Apply20% Discount</button> 
-         <button onClick={()=> handleDiscountPercentage(30)}>Apply30% Discount</button> 
+                        <div className="cart-total">
+                            <p>Total Amount Before Discount: ${total}</p>
+                        </div>
 
-         <p>---------------------------</p>
-         <input type="text" value={cupdiscount} placeholder='Enter CoupanCode'onChange={(e)=>setCupDiscount(e.target.value)} />
-         <button onClick={()=> cupDiscountCalulation()}>ApplyCoupan</button>
-         <p>CoupanDiscount Amount : ${cupdis}</p>
-         <p>---------------------------</p>
+                        <div className="discount-section">
+                            <button onClick={() => handleDiscountPercentage(10)}>Apply 10% Discount</button>
+                            <button onClick={() => handleDiscountPercentage(20)}>Apply 20% Discount</button>
+                            <button onClick={() => handleDiscountPercentage(30)}>Apply 30% Discount</button>
+                        </div>
 
+                        <div className="coupon-section">
+                            <input
+                                type="text"
+                                value={cupDiscount}
+                                placeholder="Enter Coupon Code"
+                                onChange={(e) => setCupDiscount(e.target.value)}
+                            />
+                            <button onClick={handleCouponCode}>Apply Coupon</button>
+                            <p>Coupon Discount Amount: ${cupDis}</p>
+                        </div>
 
-        <p> Discount Percentage applied : {discount}%</p>
-        <p>Discount Amount : ${dis}</p>
-        <p>Final Amount After Discount : ${netAmount}</p>
-        <p>---------------------------</p>
-        <button>Buy Now</button>
-         </div>
+                        <div className="discount-summary">
+                            <p>Discount Percentage Applied: {discount}%</p>
+                            <p>Discount Amount: ${dis}</p>
+                            <p>Final Amount After Discount: ${netAmount}</p>
+                        </div>
 
-         ) 
-         }
-
-
-         
-       
-         </>
-        
-    )
+                        <button onClick={handleHistory} className="checkout-button">
+                            Add To History
+                        </button>
+                    </div>
+                )}
+            </div>
+        </>
+    );
 }
 
-export default Cart
+export default Cart;

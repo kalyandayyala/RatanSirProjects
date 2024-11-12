@@ -1,0 +1,131 @@
+
+
+.cart-container {
+    max-width:100%;
+    margin: auto;
+    padding: 20px;
+    background-color: #f8f9fa;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    animation: slideIn 1s ease-in-out;
+    font-family: Arial, sans-serif;
+}
+
+.cart-header {
+    text-align: center;
+    font-size: 2rem;
+    color: #ff5900;
+    margin-bottom: 20px;
+}
+
+.cart-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.cart-item {
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    padding: 20px;
+    width: 180px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    position: relative;
+    transition: transform 0.3s ease;
+}
+
+.cart-item:hover {
+    transform: scale(1.05);
+}
+
+.cart-item h4 {
+    font-size: 1.2rem;
+    margin: 10px 0;
+    color: #333333;
+}
+
+.cart-item p {
+    font-size: 0.9rem;
+    color: #666666;
+    margin: 5px 0;
+}
+
+.cart-buttons {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 10px;
+}
+
+.cart-buttons button {
+    background-color: #ff5900;
+    color: #ffffff;
+    border: none;
+    padding: 5px 10px;
+    font-size: 0.8rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.cart-buttons button:hover {
+    background-color: #e04d00;
+}
+
+.cart-total {
+    margin-top: 20px;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #333333;
+}
+
+.discount-section,
+.coupon-section {
+    margin-top: 20px;
+    padding: 10px;
+    border-radius: 8px;
+    background-color: #e8f0fe;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.discount-section button,
+.coupon-section button {
+    background-color: #4caf50;
+    color: #ffffff;
+    padding: 5px 15px;
+    font-size: 0.9rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.discount-section button:hover,
+.coupon-section button:hover {
+    background-color: #43a047;
+}
+
+.discount-summary p {
+    font-size: 0.9rem;
+    margin: 5px 0;
+    color: #333333;
+}
+
+.discount-summary {
+    font-weight: bold;
+    text-align: center;
+    font-size: 1.1rem;
+}
+
+/* Slide-in animation for the cart container */
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

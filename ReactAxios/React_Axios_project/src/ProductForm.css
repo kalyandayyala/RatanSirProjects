@@ -1,0 +1,153 @@
+/* Main container with split background */
+body, html {
+    
+    margin: 20px;
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    background: linear-gradient(to right, rgba(58, 31, 31, 0.5), rgba(62, 29, 29, 0.5)),
+                url('public/chicken.jpg') left center / cover no-repeat,
+                url('public/chickenTikka.jpg') right center / cover no-repeat;
+}
+
+/* Wrapper styling */
+.form-container {
+    width: 100%;
+    padding: 25px;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 12px;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.3);
+    animation: fadeIn 1s ease-in-out;
+    transform: scale(0.95);
+}
+
+/* Animation for form container */
+@keyframes fadeIn {
+    0% { opacity: 0; transform: scale(0.9); }
+    100% { opacity: 1; transform: scale(1); }
+}
+
+/* Form styling */
+form {
+    margin-bottom: 20px;
+}
+
+label {
+    font-weight:bolder;
+    display: block;
+    margin-bottom: 5px;
+    color: #c9a505;
+    font-size: 20px;
+}
+
+input[type="text"],
+input[type="file"],
+button {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 16px;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+input[type="text"]:focus,
+input[type="file"]:focus {
+    width: 100%;
+    box-shadow: 0px 0px 5px rgba(76, 175, 80, 0.6);
+    transform: scale(1.03);
+}
+
+/* Button styling */
+button {
+    background-color: #4CAF50;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+    box-shadow: 0px 4px 10px rgba(76, 175, 80, 0.5);
+}
+
+button:hover {
+    background-color: #45a049;
+    transform: scale(1.05);
+}
+
+/* Product table styling */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    animation: slideUp 1s ease-in-out;
+}
+
+@keyframes slideUp {
+    0% { transform: translateY(20px); opacity: 0; }
+    100% { transform: translateY(0); opacity: 1; }
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: center;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+th {
+    background-color: #432f2f;
+    color: #fff;
+    font-weight: bold;
+}
+
+tr:nth-child(odd) {
+    background-color: #a92d2d;
+}
+tr:nth-child(even) {
+    background-color: #f26107;
+}
+
+tr:hover {
+    background-color: #350303;
+    color: #fff;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* Image styling */
+img {
+    border-radius: 8px;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+img:hover {
+    transform: scale(1.1);
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Heading styling */
+h3 {
+    color: #4CAF50;
+    text-align: center;
+    font-size: 1.8rem;
+    margin-top: 20px;
+    animation: slideDown 1s ease-in-out;
+}
+h1 {
+    position: sticky;
+    top: 0;
+    left: 230px;
+    color: #ffffff;
+    background: linear-gradient(90deg, #ff9966, #ff5e62);
+    width: 100%;
+    text-align: center;
+    font-size: 50px;
+    margin-top: 20px;
+    animation: slideDown 1s ease-in-out;
+}
+
+@keyframes slideDown {
+    0% { transform: translateY(-20px); opacity: 0; }
+    100% { transform: translateY(0); opacity: 1; }
+}
